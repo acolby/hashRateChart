@@ -24,8 +24,8 @@
     "mixpanel":false,
     "$": false,
     "io": false,
-    "cryptico": false,
+    "regression": false,
     "Firebase": false,
-    "Tinycon": false
+    "Highcharts": false
   }
 }
