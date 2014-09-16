@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 	// Project configuration.
 	grunt.initConfig({
 			pkg: grunt.file.readJSON('package.json'),
-			sass: {
+			sass: { 
 				public: {
 					files: {
 						'public/styles/main.css': 'public/styles/main.scss'
