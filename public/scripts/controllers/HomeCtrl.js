@@ -30,9 +30,14 @@ angular.module('shouldImine')
 		var timeTwoYearsFromNow = now+miliSecondsInSixMonths*4;
 
 		var prediction = [];
+		var ourprediction = [];
 		for (i = 0; i <= 4; i++) {
 			var time = now+miliSecondsInSixMonths*i;
 			prediction.push({
+				'x': time,
+				'y': Math.floor(regressionProjection.equation[0] + regressionProjection.equation[1]*time + regressionProjection.equation[2]*Math.pow(time, 2) + regressionProjection.equation[3]*Math.pow(time, 3))
+			});
+			ourprediction.push({
 				'x': time,
 				'y': Math.floor(regressionProjection.equation[0] + regressionProjection.equation[1]*time + regressionProjection.equation[2]*Math.pow(time, 2) + regressionProjection.equation[3]*Math.pow(time, 3))
 			});
@@ -101,7 +106,20 @@ angular.module('shouldImine')
 			},
 			series: [
 				{
-					name: 'prediction',
+					name: 'our prediction',
+					data: ourprediction,
+					marker:{
+						enabled: false
+					},
+					dataLabels: {
+						enabled: false
+					},
+					draggableY: false,
+					draggableX: false,
+					color: '#CCCCCC'
+				},
+				{
+					name: 'your prediction',
 					data: prediction,
 					draggableY: true,
 					draggableX: false,
