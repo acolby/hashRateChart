@@ -21,6 +21,7 @@
     "highcharts": "~4.0.4",
     "angular-route": "~1.2.23",
     "angular-ui": "~0.4.0",
-    "regression-js": "~1.2.0"
+    "regression-js": "~1.2.0",
+    "font-awesome": "~4.2.0"
   }
 }

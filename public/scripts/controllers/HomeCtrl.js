@@ -14,7 +14,7 @@ angular.module('shouldImine')
 				[x,y]
 			]
 			// x = time in epoch
-			// y = hasrate in GH/s
+			// y = hasrate in TH/s
 		*/
 		var previousData = [];
 		for (var i = 0; i < hashRateData.length; i++) {
@@ -43,18 +43,6 @@ angular.module('shouldImine')
 			});
 		}
 
-		var value;
-		$("input").on("keyup change", function(){
-			value = this.value; 
-			$("#dom_element").text(value);
-		});
-
-		var staticValue = 24;
-		$("#updateHashRateButton").on("click", function(){
-			staticValue = value;
-		});
-
-
 		var chart = new Highcharts.Chart({
 			chart: {
 				type: 'spline',
@@ -62,7 +50,7 @@ angular.module('shouldImine')
 				animation: true
 			},
 			title: {
-				text: 'Network Hash Rate Prediction'
+				text: ''
 			},
 			yAxis: {
 				min: 0,
@@ -79,7 +67,6 @@ angular.module('shouldImine')
 				tickPixelInterval: 150,
 				min: now,
 				max: timeTwoYearsFromNow,
-				startOnTick: true,
 				scalable: true
 			},
 			plotOptions: {
@@ -123,29 +110,47 @@ angular.module('shouldImine')
 					data: prediction,
 					draggableY: true,
 					draggableX: false,
-					color: '#99CCCC'
+					color: '#32b69e'
 				}
 			]
 		});
-/*
 
-$('#drop').html(
-		this.series.name + '</b>, <b>' + date + '</b> was set to <b>' + Highcharts.numberFormat(this.y, 2) + '</b>' + ' GH/s');
-var BTCMined = (((localHashRate*(plotline[1].x-plotline[0].x))/((plotline[0].y*(plotline[1].x-plotline[0].x))+(.5*((plotline[1].x-plotline[0].x)*(plotline[1].y-plotline[0].y)))))*(plotline[1].x-plotline[0].x)*0.00008333333)+ 
+		$scope.userUpfrontCost = 0;
+		$scope.userMonthlyCost = 0;
+		$scope.yourHashRate = 1000;
+		$scope.coinsMined = null;
+		$scope.totalCosts = null;
+		$scope.calculateBtcMined = function(){
+			var coinsMindInOneDay = 24*6;
+			// validate the inputs
+			// conver to xy data
+			var theirPerdictionPoints = [];
+			for(var i = 0; i < chart.series[1].xData.length; i++){
+				theirPerdictionPoints.push([
+					chart.series[1].xData[i],
+					chart.series[1].yData[i]
+				]);
+			}
+			
+			var theirPredictionRegression = regression('polynomial', theirPerdictionPoints, 5);
 
-(((localHashRate*(plotline[2].x-plotline[1].x))/((plotline[1].y*(plotline[2].x-plotline[1].x))+(.5*((plotline[2].x-plotline[1].x)*(plotline[2].y-plotline[1].y)))))*(plotline[2].x-plotline[1].x)*0.00008333333) + 
-
-(((localHashRate*(plotline[3].x-plotline[2].x))/((plotline[2].y*(plotline[3].x-plotline[2].x))+(.5*(( plotline[3].x-plotline[2].x)*(plotline[3].y-plotline[2].y)))))*(plotline[3].x-plotline[2].x)* 0.00008333333) + 
-
-(((localHashRate*(plotline[4].x-plotline[3].x))/((plotline[3].y*(plotline[4].x-plotline[3].x))+(.5*((plotline[4].x-plotline[3].x)*(plotline[4].y-plotline[3].y)))))*(plotline[4].x-plotline[3].x)*0.00008333333) 
-
-;
-
-$('#drag').html(
-	'Bitcoins mined in one year: <b>' + BTCMined);
-},
-
-
-*/
+			// calculate coins mined
+			var milliSecondsInADay = 24*60*60*1000;
+			var dayNumber = 1;
+			var totalCoinsMined = 0;
+			while(dayNumber <= 720){
+				var time = now + (dayNumber)*24*60*60*1000;
+				totalCoinsMined += $scope.yourHashRate/Math.floor(
+					theirPredictionRegression.equation[0] + 
+					theirPredictionRegression.equation[1]*time + 
+					theirPredictionRegression.equation[2]*Math.pow(time, 2) + 
+					theirPredictionRegression.equation[3]*Math.pow(time, 3) + 
+					theirPredictionRegression.equation[4]*Math.pow(time, 4) + 
+					theirPredictionRegression.equation[5]*Math.pow(time, 5))*coinsMindInOneDay;
+				dayNumber++;
+			}
+			$scope.totalCosts = $scope.userUpfrontCost + $scope.userMonthlyCost*24;
+			$scope.coinsMined = totalCoinsMined;
+		};
 
 }]);

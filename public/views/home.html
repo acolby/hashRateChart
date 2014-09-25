@@ -1,103 +1,98 @@
 <div style='width:100%; margin:0 auto; background-color:#F9F9F9'>
-	<div style='widht:100%; background-color:#242633'>
-		<h1 style='color: white; margin: 0px; padding:5px 0px 5px 10px;'>should i mine bitcoin?</h1>
+	<div style='width:100%; background-color:#242633; height:70px; padding-top:7px;'>
+		<h1 style='color: white; margin: 0px; padding:7px 20px 20px 15px;'> should i mine bitcoin? <i style='float:right;' class="fa fa-btc hidden-xs"></i></h1>
 	</div>
 	<div style='width:100%; padding:10px'>
 		<div class="row">
-        <div class="col-lg-6">
-            <div class="panel">
-                <div class="panel-body ng-scope" data-ng-controller="flotChartCtrl">
-                	in order to answer this question you need do a simple cost minus revinue calcutions.  that man costs are you up front mining cost an well as you monthly variable costs, which includes electricity, labor, and rent.  as far as revenue goes you need to consider how the the network hash rate is going to change over time.
-                </div>
-            </div>            
-        </div>
-        <div class="col-lg-6">
-            <!-- stats -->
-            <div class="row">
-                <div class="col-xsm-6">
-                    <div class="panel mini-box">
-                        <span class="box-icon rounded bg-success">
-                            <i class="fa fa-rocket"></i>
-                        </span>
-                        <div class="box-info">
-                            <p class="size-h2">36 <span class="size-h4">%</span></p>
-                            <p class="text-muted"><span data-i18n="Growth">Growth</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xsm-6">
-                    <div class="panel mini-box">
-                        <span class="box-icon rounded bg-info">
-                            <i class="fa fa-users"></i>
-                        </span>
-                        <div class="box-info">
-                            <p class="size-h2">352</p>
-                            <p class="text-muted"><span data-i18n="New users">New users</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xsm-6">
-                    <div class="panel mini-box">
-                        <span class="box-icon rounded bg-warning">
-                            <i class="fa fa-dollar"></i>
-                        </span>
-                        <div class="box-info">
-                            <p class="size-h2">4,120</p>
-                            <p class="text-muted"><span data-i18n="Profit">Profit</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xsm-6">
-                    <div class="panel mini-box">
-                        <span class="box-icon rounded bg-danger">
-                            <i class="fa fa-shopping-cart"></i>
-                        </span>
-                        <div class="box-info">
-                            <p class="size-h2">313</p>
-                            <p class="text-muted"><span data-i18n="Sales">Sales</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end stats -->            
-        </div>
-    	</div>
-		<div class='row'>
-			<div class='col-lg-6'>
-				<div class='panel'>
-					<h2>Hashrate</h2>
-					<h3>what is your hashrate?</h3>
-					<input style='display:inline;' type='text' ng-model='userHashRate'/><select></select>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-	<div class="inner cover">
-		
-		<h3>well in order for us to answer this we need some information from you!</h3>
-		<div class='row'>
-			
-			<div class='col-md-6'>
-				<h2>Costs</h2>
-				<h3>what was your upfront cost?</h3>
-				<input style='display:inline;' type='text' ng-model='userUpfrontCost'/><h4 style='display:inline;'> $USD</h4>
-				<h3>what is your cost per month?</h3>
-				<input style='display:inline;' type='text' ng-model='userMonthlyCost'/><h4 style='display:inline;'> $USD</h4>
-			</div>
+	        <div class="col-lg-6">
+	            <div class="panel" style='min-height:300px;'>
+	                <div class="panel-body ng-scope">
+	                	<p>in order to answer this question you need do a simple cost minus revinue calcution.  that man costs are you up front mining cost an well as you monthly variable costs, which includes electricity, labor, and rent.  as far as revenue goes you need to consider how the the network hash rate is going to change over time.</p>
+	                	<p>in order to answer this question you need do a simple cost minus revinue calcution.  that man costs are you up front mining cost an well as you monthly variable costs, which includes electricity, labor, and rent.  as far as revenue goes you need to consider how the the network hash rate is going to change over time.</p>
+	                	<p>in order to answer this question you need do a simple cost minus revinue calcution.  that man costs are you up front mining cost an well as you monthly variable costs, which includes electricity, labor, and rent.  as far as revenue goes you need to consider how the the network hash rate is going to change over time.</p>
+	                </div>
+	            </div>            
+	        </div>
+	        <div class="col-lg-6">
+	            <div class="panel-heading"><i class="fa fa-wrench"></i>&nbsp&nbsp Your Setup</div>
+	            <div class="row">
+	                <div class="col-xsm-6">
+	                    <div class="panel mini-box">
+	                        <span class="box-icon rounded bg-success">
+	                            <i class="fa fa-dollar"></i>
+	                        </span>
+	                        <div class="box-info">
+	                            <p class="size-h2"><input style='font-size:20px; display:inline; width:80px;' type='number' ng-model='userUpfrontCost'/><span class="size-h4" style='padding-left:5px;'>$USD</span></p>
+	                            <p class="text-muted"><span data-i18n="Growth">upfront cost</span></p>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="col-xsm-6">
+	                    <div class="panel mini-box">
+	                        <span class="box-icon rounded bg-info">
+	                            <i class="fa fa-dollar"></i>
+	                        </span>
+	                        <div class="box-info">
+	                            <p class="size-h2"><input style='font-size:20px; display:inline; width:80px;' type='number' ng-model='userMonthlyCost'/><span class="size-h4" style='padding-left:5px;'>$USD</span></p>
+	                            <p class="text-muted"><span data-i18n="Growth">monthly costs</span></p>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="col-xsm-12">
+	                    <div class="panel mini-box">
+	                        <span class="box-icon rounded bg-warning">
+	                            <i class="fa fa-angle-double-right"></i>
+	                        </span>
+	                        <div class="box-info">
+	                            <p class="size-h2"><input style='font-size:20px; display:inline; width:130px;' type='number' ng-model='yourHashRate'/><span class="size-h4" style='padding-left:5px;'>THs/s</span></p>
+	                            <p class="text-muted"><span data-i18n="Growth">your hashrate</span></p>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <!-- end stats -->            
+	 		</div>
+	 	</div>
+ 		<div class='row'>
+ 			<div class="col-lg-12">
+ 				<div class="panel-heading"><i class="fa fa-line-chart"></i>&nbsp&nbsp Network Hashrate Prediciton</div>
+	            <div class="panel">
+	            	<div class="panel-body">
+	                	<div id="container" style="height: 400px"></div>
+	            	</div>
+	            </div>            
+	        </div>
 		</div>
 		<div class='row'>
-			<div class='col-md-12'>
-				<h2>Neworkhashrate Prediction</h2>
-				<h3>what do you expect the network hashrate to look like?</h3>
-			</div>
-			<div class='col-md-12'>
-				<div id="container" style="height: 300px"></div>
-			</div>
+ 			<div class="col-lg-12">
+ 				<div class="panel-heading"><i class="fa fa-calculator"></i>&nbsp&nbsp Calculation</div>
+	            <div class="panel">
+	            	<div class="panel-body">
+	            		<div class='row'>
+			            	<div class="col-lg-12 text-center">
+			            		<button type="button" class="btn btn-primary btn-lg" ng-click='calculateBtcMined()'><i class="fa fa-btc"></i>&nbsp Calculate</button>
+			            		<br>
+			            		<br>
+			            		<p class="text-muted"><span data-i18n="Growth">this will calculate the # of coins you will mine over the next two years</span></p>
+			            	</div>
+			            </div>
+			            <div class='row' ng-show='coinsMined'>
+			            	<div class="col-lg-6 text-center">
+				            	<div class="panel mini-box">
+			                        <p class="size-h2">you will mine <i class="fa fa-btc"></i> {{coinsMined | number:6}}</p>
+		               			</div>
+		               		</div>
+		               		<div class="col-lg-6 text-center">
+				            	<div class="panel mini-box">
+			                        <p class="size-h2">at a cost of <i class="fa fa-dollar"></i> {{totalCosts | number:2}}</p>
+		               			</div>
+		               		</div>
+		               	</div>
+		            </div>
+	            </div>            
+	        </div>
 		</div>
 	</div>
 </div>
