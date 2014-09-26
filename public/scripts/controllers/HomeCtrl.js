@@ -138,7 +138,7 @@ angular.module('shouldImine')
 			$scope.coinsMined = null;
 			$scope.totalCosts = null;
 			$scope.calculateBtcMined = function(){
-				var coinsMindInOneDay = 24*6;
+				var coinsMindInOneDay = 24*6*25;
 				// validate the inputs
 				// conver to xy data
 				var theirPerdictionPoints = [];
@@ -163,11 +163,10 @@ angular.module('shouldImine')
 						theirPredictionRegression.equation[0] + 
 						theirPredictionRegression.equation[1]*time + 
 						theirPredictionRegression.equation[2]*Math.pow(time, 2) + 
-						theirPredictionRegression.equation[3]*Math.pow(time, 3));coinsMindInOneDay;
+						theirPredictionRegression.equation[3]*Math.pow(time, 3))*coinsMindInOneDay/1000;
 					totalCoinsMined += coinsMindedThatDay;
 					dayNumber++;
 				}
-
 				// plot the new regressiong
 				newRegression = [];
 				for (i = 0; i <= 24; i++) {
@@ -178,7 +177,7 @@ angular.module('shouldImine')
 					});
 				}
 
-				chart.series[2].setData(newRegression,true);
+				//chart.series[2].setData(newRegression,true);
 
 				$scope.totalCosts = $scope.userUpfrontCost + $scope.userMonthlyCost*24;
 				$scope.coinsMined = totalCoinsMined;

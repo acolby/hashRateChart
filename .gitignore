@@ -5,4 +5,6 @@ node_modules
 .DS_Store
 .DS_Store?
 .ftppass
+.awsDeployKey.json
 /mylocalnotes/
+public/components/
