@@ -1,12 +1,22 @@
 'use strict';
 
 angular.module('shouldImine')
-.controller('HomeCtrl', ['$scope',
-	function($scope) {
+.controller('HomeCtrl', ['$scope', '$cookieStore',
+	function($scope, $cookieStore) {
 
 		// historical data
 		var hashRateData = [];
 		var btcHashrateRef = new Firebase('https://shouldimine.firebaseIO.com/bitcoin');
+
+		// analytics
+		var anonomousAnalyticsRef = new Firebase('https://shouldimine.firebaseIO.com/bitcoin/anonomousAnalytics');
+		var anonomousAnalyticsKey = $cookieStore.get('_shouldimineAnonomousAnalyticsCookee');
+		if (anonomousAnalyticsKey === undefined) {
+			var aref = anonomousAnalyticsRef.push({}).toString().split('/');
+			anonomousAnalyticsKey = aref[aref.length - 1];
+			$cookieStore.put('_shouldimineAnonomousAnalyticsCookee', anonomousAnalyticsKey);
+		}
+		var anonomousAnalyticsMyRef = anonomousAnalyticsRef.child(anonomousAnalyticsKey);
 
 		// get the historicalData from firebase
 		btcHashrateRef.child('historicalHashrateData').once('value', function(snap){
@@ -14,6 +24,10 @@ angular.module('shouldImine')
 			hashRateData.splice(0, 1500);
 			initAll();
 		});
+
+		$scope.userUpfrontCost = 2500;
+		$scope.userMonthlyCost = 72;
+		$scope.yourHashRate = 4500;
 
 		function initAll(){
 			// to make regressionProdiction data needs to be of form
@@ -121,20 +135,17 @@ angular.module('shouldImine')
 						draggableY: true,
 						draggableX: false,
 						color: '#32b69e'
-					},
+					},/*
 					{
 						name: 'calculated regression',
 						data: newRegression,
 						draggableY: false,
 						draggableX: false,
 						color: '#328bb5'
-					}
+					}*/
 				]
 			});
 
-			$scope.userUpfrontCost = 0;
-			$scope.userMonthlyCost = 0;
-			$scope.yourHashRate = 1000;
 			$scope.coinsMined = null;
 			$scope.totalCosts = null;
 			$scope.calculateBtcMined = function(){
@@ -181,7 +192,16 @@ angular.module('shouldImine')
 
 				$scope.totalCosts = $scope.userUpfrontCost + $scope.userMonthlyCost*24;
 				$scope.coinsMined = totalCoinsMined;
+
+				// data to push to firebase
+				anonomousAnalyticsMyRef.child('claculations').push({
+					'ourPredictionPoints': theirPerdictionPoints,
+					'predictionPoints': ourprediction,
+					'fixedCosts': $scope.userUpfrontCost,
+					'variableCosts': $scope.userMonthlyCost,
+					'hashRate': $scope.yourHashRate
+				});
 			};
 		}
-
-}]);
+	}
+]);

@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('shouldImine', [
-  'ngRoute'
+  'ngRoute',
+  'ngCookies'
 ])
 .config(function ($routeProvider) {
 $routeProvider
