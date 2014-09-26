@@ -1,0 +1,21 @@
+{
+  "name": "hashrateUpdater",
+  "version": "0.0.0",
+  "description": "pulls the bitcoin hashrate data and updates firebase",
+  "main": "hasrateUpdater.js",
+  "dependencies": {
+    "btce": "~0.4.3",
+    "coinbase-api": "~0.0.6",
+    "jquery": "~1.8.3",
+    "cryptojs": "~2.5.3",
+    "jsdom": "~0.8.9",
+    "node-curl": "^0.3.3",
+    "firebase": "^1.0.24"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ac",
+  "license": "ISC"
+}
