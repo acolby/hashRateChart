@@ -136,6 +136,7 @@ angular.module('shouldImine')
 						draggableX: false,
 						color: '#32b69e'
 					},
+					/*
 					{
 						name: 'calculated regression',
 						data: newRegression,
@@ -143,6 +144,7 @@ angular.module('shouldImine')
 						draggableX: false,
 						color: '#328bb5'
 					}	
+					*/
 				]
 			});
 
