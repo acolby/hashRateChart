@@ -135,14 +135,14 @@ angular.module('shouldImine')
 						draggableY: true,
 						draggableX: false,
 						color: '#32b69e'
-					},/*
+					},
 					{
 						name: 'calculated regression',
 						data: newRegression,
 						draggableY: false,
 						draggableX: false,
 						color: '#328bb5'
-					}*/
+					}	
 				]
 			});
 
@@ -162,33 +162,36 @@ angular.module('shouldImine')
 				
 				var theirPredictionRegression = regression('polynomial', theirPerdictionPoints, 3);
 
-				// calculate coins mined
-				var milliSecondsInADay = 24*60*60*1000;
-				var dayNumber = 1;
-				var totalCoinsMined = 0;
-				var time;
+				var xValues = [];
+				var yValues = [];
+				for(i = 0; i < theirPerdictionPoints.length; i++){
+					xValues.push(theirPerdictionPoints[i][0]);
+					yValues.push(theirPerdictionPoints[i][1]);
+				}
 
-				while(dayNumber <= 720){
-					time = now + (dayNumber)*24*60*60*1000;
-					var coinsMindedThatDay = $scope.yourHashRate/Math.floor(
-						theirPredictionRegression.equation[0] + 
-						theirPredictionRegression.equation[1]*time + 
-						theirPredictionRegression.equation[2]*Math.pow(time, 2) + 
-						theirPredictionRegression.equation[3]*Math.pow(time, 3))*coinsMindInOneDay/1000;
+				var times = numeric.linspace(xValues[0],xValues[4],730);
+				var hashRates = numeric.spline(xValues,yValues).at(times);
+
+				// calculate coins mined
+				var totalCoinsMined = 0;
+				for(i = 0; i < hashRates.length; i++){
+					var coinsMindedThatDay = $scope.yourHashRate/hashRates[i]*coinsMindInOneDay/1000;
 					totalCoinsMined += coinsMindedThatDay;
-					dayNumber++;
 				}
 				// plot the new regressiong
+				/*
 				newRegression = [];
-				for (i = 0; i <= 24; i++) {
+
+				for (i = 0; i < times.length; i++) {
 					time = now+miliSecondsInSixMonths*i/6;
 					newRegression.push({
-						'x': time,
-						'y': Math.floor(theirPredictionRegression.equation[0] + theirPredictionRegression.equation[1]*time + theirPredictionRegression.equation[2]*Math.pow(time, 2) + theirPredictionRegression.equation[3]*Math.pow(time, 3))
+						'x': times[i],
+						'y': hashRates[i]
 					});
 				}
 
-				//chart.series[2].setData(newRegression,true);
+				chart.series[1].setData(newRegression,true);
+				*/
 
 				$scope.totalCosts = $scope.userUpfrontCost + $scope.userMonthlyCost*24;
 				$scope.coinsMined = totalCoinsMined;
