@@ -177,7 +177,7 @@ angular.module('shouldImine')
 				// calculate coins mined
 				var totalCoinsMined = 0;
 				for(i = 0; i < hashRates.length; i++){
-					var coinsMindedThatDay = $scope.yourHashRate/hashRates[i]*coinsMindInOneDay/1000;
+					var coinsMindedThatDay = $scope.yourHashRate/(Math.max(hashRates[i], 0)+$scope.yourHashRate)*coinsMindInOneDay/1000;
 					totalCoinsMined += coinsMindedThatDay;
 				}
 				// plot the new regressiong
