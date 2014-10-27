@@ -72,6 +72,20 @@
 		</div>
 		<div class='row'>
  			<div class="col-lg-12">
+ 				<div class="panel-heading"><i class="fa fa-btc"></i>&nbsp&nbsp Bitcoin Price Prediction</div>
+            	<div class="panel mini-box">
+            		What will btc be worth in 2 years?
+                  	<span class="box-icon rounded bg-success">
+                        <i class="fa fa-dollar"></i>
+                    </span>
+                    <div class="box-info">
+                        <p class="size-h2"><input style='font-size:20px; display:inline; width:80px;' type='number' ng-model='btcPricePrediction'/><span class="size-h4" style='padding-left:5px;'>$USD</span></p>
+                    </div>
+                </div>         
+	        </div>
+		</div>
+		<div class='row'>
+ 			<div class="col-lg-12">
  				<div class="panel-heading"><i class="fa fa-calculator"></i>&nbsp&nbsp Calculation</div>
 	            <div class="panel">
 	            	<div class="panel-body">
@@ -84,14 +98,19 @@
 			            	</div>
 			            </div>
 			            <div class='row' ng-show='coinsMined'>
-			            	<div class="col-lg-6 text-center">
+			            	<div class="col-lg-4 text-center">
 				            	<div class="panel mini-box">
-			                        <p class="size-h2">you will mine <i class="fa fa-btc"></i> {{coinsMined | number:6}}</p>
+			                        <p class="size-h2">you will mine <br><i class="fa fa-btc"></i> {{coinsMined | number:6}}</p>
 		               			</div>
 		               		</div>
-		               		<div class="col-lg-6 text-center">
+		               		<div class="col-lg-4 text-center">
 				            	<div class="panel mini-box">
-			                        <p class="size-h2">at a cost of <i class="fa fa-dollar"></i> {{totalCosts | number:2}}</p>
+			                        <p class="size-h2">at a cost of <br><i class="fa fa-dollar"></i> {{totalCosts | number:2}}</p>
+		               			</div>
+		               		</div>
+		               		<div class="col-lg-4 text-center">
+				            	<div class="panel mini-box">
+			                        <p class="size-h2">profit in two years <br><i class="fa fa-dollar"></i> {{net | number:2}}</p>
 		               			</div>
 		               		</div>
 		               	</div>
@@ -101,7 +120,7 @@
 		</div>
 		<div class='row'>
 			<div class= "col-lg-12">
-				<div class="panel-heading"><i class="fa fa-weixin"></i>&nbsp&nbsp Comment</div>
+				<div class="panel-heading"><i class="fa fa-weixin"></i>&nbsp&nbsp Discuss</div>
 				<div class="panel">
 					<div class="panel-body">
 						<div id="disqus_thread"></div>

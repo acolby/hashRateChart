@@ -29,6 +29,8 @@ angular.module('shouldImine')
 		$scope.userMonthlyCost = 72;
 		$scope.yourHashRate = 4500;
 
+		$scope.btcPricePrediction = 1000;
+
 		function initAll(){
 			// to make regressionProdiction data needs to be of form
 			/*
@@ -179,6 +181,9 @@ angular.module('shouldImine')
 				
 				$scope.totalCosts = $scope.userUpfrontCost + $scope.userMonthlyCost*24;
 				$scope.coinsMined = coinsMined;
+				$scope.dollarsMinded = $scope.btcPricePrediction*$scope.coinsMined;
+
+				$scope.net = $scope.dollarsMinded - $scope.totalCosts;
 
 				// data to push to firebase
 				anonomousAnalyticsMyRef.child('claculations').push({
@@ -186,7 +191,8 @@ angular.module('shouldImine')
 					'predictionPoints': ourprediction,
 					'fixedCosts': $scope.userUpfrontCost,
 					'variableCosts': $scope.userMonthlyCost,
-					'hashRate': $scope.yourHashRate
+					'hashRate': $scope.yourHashRate,
+					'btcPricePrediction': $scope.btcPricePrediction
 				});
 			};
 
